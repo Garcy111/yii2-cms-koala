@@ -5,8 +5,9 @@ namespace app\modules\admin\controllers;
 use yii\web\Controller;
 use app\modules\admin\models\LoginForm;
 use app\modules\admin\models\ChangePassword;
+use app\modules\admin\models\Orders;
 use app\modules\admin\models\json\Chart;
-use app\modules\admin\models\Post;
+use app\modules\admin\models\Product;
 use app\modules\user\models\User;
 use Yii;
 
@@ -19,9 +20,13 @@ class DefaultController extends Controller
 
 	public function actionIndex()
 	{
-		$products = Post::find()->count();
+		$orders = Orders::find()->count();
+		$payment = Orders::find()->where(['active' => 1])->count();
+		$products = Product::find()->count();
 		$users = User::find()->count();
 		return $this->render('index', [
+				'orders' => $orders,
+				'payment' => $payment,
 				'products' => $products,
 				'users' => $users,
 			]);
