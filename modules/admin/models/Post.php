@@ -9,7 +9,7 @@ class Post extends ActiveRecord {
 
 	public static function tableName()
 	{
-		return 'posts';
+		return '{{%posts}}';
 	}
 
 	public function rules()
@@ -20,7 +20,7 @@ class Post extends ActiveRecord {
 			['title', 'string', 'max' => 250, 'tooLong' => 'Поле не должно содержать более 250 символов'],
 			['description', 'string', 'max' => 400, 'tooLong' => 'Поле не должно содержать более 400 символов'],
 			[['meta_desc', 'meta_keywords'], 'string', 'max' => 250, 'tooLong' => 'Поле не должно содержать более 250 символов'],
-			[['content', 'category_id', 'miniature', 'date'], 'safe'],
+			[['title_index', 'content', 'category_id', 'miniature', 'date'], 'safe'],
 		];
 	}
 

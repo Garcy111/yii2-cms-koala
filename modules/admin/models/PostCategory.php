@@ -16,11 +16,7 @@ class PostCategory extends ActiveRecord {
 		return [
 			['name', 'required', 'message' => ''],
 			['name', 'string', 'max' => 100, 'message' => ''],
+			['updated_at', 'safe'],
 		];
 	}
-
-	// public function getParent()
-	// {
-	// 	return $this->hasOne(PostCategory::className(), ['id' => 'parent_id']);
-	// }
 }

@@ -3,19 +3,19 @@
 	background: #69D3E8;
 }
 *::-webkit-input-placeholder {
-	color: #666;
+	color: #9F9F9F;
 	opacity: 1;
 }
 *:-moz-placeholder {
-	color: #A395A6;
+	color: #9F9F9F;
 	opacity: 1;
 }
 *::-moz-placeholder {
-	color: #A395A6;
+	color: #9F9F9F;
 	opacity: 1;
 }
 *:-ms-input-placeholder {
-	color: #A395A6;
+	color: #9F9F9F;
 	opacity: 1;
 }
 
@@ -369,19 +369,21 @@ body {
 	  margin: 10px 0;
 	  height: 30px;
 	}
-	.titleInput {
+	.titleInput, .titleInputShort {
 		display: block;
 		width: 100%;
 		height: 35px;
 		padding: 0 8px;
 		margin: 0px 0 3px;
-		font-size: 14pt;
+		font-size: 11pt;
 		outline: none;
 		border: none;
 		border-radius: 1px;
 		background: #FFF;
-		box-shadow: inset 1px 1px 6px #E6E6E6;
 		@extend %box-sizing;
+	}
+	.titleInputShort {
+		width: 300px;
 	}
 }
 

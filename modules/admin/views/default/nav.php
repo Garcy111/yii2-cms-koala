@@ -18,6 +18,11 @@
 		<?= Html::a('<i class="fa fa-home" aria-hidden="true"></i> Главная', ['/admin']); ?>
 	</li>
 
+	<li <?php if ($route === 'admin/menu/index'): ?> class="click" <?php endif?>>
+		<?= Html::a('<i class="fa fa-bars" aria-hidden="true"></i> Меню', ['/admin/menu/index']); ?>
+	</li>
+
+	<!-- Posts -->
 	<div class="nav-part">
 	<div class="nav-parent">
 		<li <?php if ($controller == 'posts' || $controller == 'post-categories'): ?> class="click" <?php endif?>>
@@ -39,34 +44,10 @@
 		</li>
 	</div>
 	</div>
+	<!-- End posts -->
 
-	<div class="nav-part">
-	<div class="nav-parent">
-		<li <?php if ($controller == 'products' || $controller == 'product-category' || $controller == 'attribute' || $controller == 'value'): ?> class="click" <?php endif?>>
-			<?= Html::a('<i class="fa fa-product-hunt" aria-hidden="true"></i> Продукты <i class="fa fa-angle-right" aria-hidden="true"></i>', ['/admin/products']); ?>
-		</li>
-	</div>
-	<div class="nav-child">
-		<li <?php if ($route === 'admin/products/index'): ?> class="click" <?php endif?>>
-			<?= Html::a('Все продукты', ['/admin/products']); ?>
-		</li>
-		<li <?php if ($route === 'admin/products/create'): ?> class="click" <?php endif?>>
-			<?= Html::a('Создать продукт', ['/admin/products/create']); ?>
-		</li>
-		<li <?php if ($route === 'admin/product-category/index'): ?> class="click" <?php endif?>>
-			<?= Html::a('Категории', ['/admin/product-category']); ?>
-		</li>
-		<li <?php if ($route === 'admin/attribute/index'): ?> class="click" <?php endif?>>
-			<?= Html::a('Атрибуты', ['/admin/attribute']); ?>
-		</li>
-		<li <?php if ($route === 'admin/value/index'): ?> class="click" <?php endif?>>
-			<?= Html::a('Значения', ['/admin/value']); ?>
-		</li>
-	</div>
-	</div>
-
-	<li <?php if ($controller == 'orders'): ?> class="click" <?php endif?>>
-		<?= Html::a('<i class="fa fa-shopping-bag" aria-hidden="true"></i> Заказы', ['/admin/orders']); ?>
+	<li <?php if ($route === 'admin/pages/index'): ?> class="click" <?php endif?>>
+		<?= Html::a('<i class="fa fa-file-text" aria-hidden="true"></i> Страницы', ['/admin/pages/index']); ?>
 	</li>
 
 	<div class="nav-part">

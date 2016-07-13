@@ -43,7 +43,7 @@ class Tags extends \yii\db\ActiveRecord
         ];
     }
 
-     public function getPosts()
+     public function findPosts()
     {
         return $this->hasMany(Posts::className(), ['id' => 'post_id'])->viaTable('{{%tag_post}}', ['tag_id' => 'id']);
     }

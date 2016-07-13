@@ -1,4 +1,6 @@
 <?php
+use app\modules\blog\models\PostCategory;
+use app\modules\blog\models\Tags;
 use yii\helpers\Html;
 function rusdate($param, $time=0) {
 	if(intval($time)==0)$time=time();
@@ -11,28 +13,41 @@ function rusdate($param, $time=0) {
 
 <!-- Sidebar -->
 <section id="sidebar" class="column is-4-desktop is-12-tablet is-12-mobile">
+	<div class="search-box is-hidden-touch">
+	<?= Html::beginForm(['/blog/search/index'], 'GET') ?>
+		<p class="control has-addons">
+			<input class="search-input" name="query" type="text" placeholder="Поиск">
+			<button class="button button-search">
+				<i class="fa fa-search"></i>
+			</button>
+		</p>
+	<?= Html::endForm() ?>
+	</div>
+			
 	<header class="personal-info is-hidden-touch">
-		<div class="logo"></div>
-		<h1 class="title logo-title">WebSnack</h1>
+		<h1 class="title logo-title">Реальная магия</h1>
 		<p>Тут должен быть крутой слоган, но я его не придумал</p>
 		<div class="separator"></div>
 	</header>
-	<div class="categories-post">
-		<h1 class="title">Разделы блога</h1>
-		<ul class="categories">
-		<?php foreach ($categories as $category): ?>
-			<li><?= Html::a($category->name, ['/blog/default/index', 'ctg' => $category->id]) ?></li>
-		<?php endforeach ?>
-		</ul>
-		<div class="separator"></div>
-	</div>
+
+	<?php if ($this->beginCache('categories-widget', [
+		'dependency' => [
+			'class' => 'yii\caching\DbDependency',
+			'sql' => 'SELECT MAX(updated_at) FROM ' . PostCategory::tableName(),
+		],
+	])): ?>
+	<?= app\widgets\blog\CategoriesWidget::widget() ?>
+	<?php $this->endCache(); endif; ?>
+
 	<div class="popular-posts">
 	<h1 class="title">Самое обсуждаемое</h1>
 		<?php foreach($popular as $pop): ?>
 			<article class="popular-post">
+			<?php if (!empty($pop->miniature)): ?>
 				<figure class="image">
 				 <?= Html::a(Html::img($pop->miniature, ['class' => 'popular-post-image', 'alt' => 'Preview']), ['/blog/default/post', 'link' => $pop->link]) ?>
 				</figure>
+				<?php endif ?>
 				<h1 class="title"><a href="#"><?= $pop->title ?></a></h1>
 				<div class="popular-post-date">
 					<?= rusdate('j M, Y', $pop->date); ?>
@@ -41,13 +56,16 @@ function rusdate($param, $time=0) {
 		<?php endforeach ?>
 		<div class="separator"></div>
 	</div>
-	<div class="tags">
-		<h1 class="title">Метки</h1>
-		<?php foreach ($tags as $tag): ?>
-			<span><i class="fa fa-tag"></i><?= Html::a($tag->name, ['/blog/default/index', 'tag' => $tag->name]) ?></span>
-		<?php endforeach ?>
-		<div class="separator"></div>
-	</div>
+
+	<?php if ($this->beginCache('tags-widget', [
+		'dependency' => [
+			'class' => 'yii\caching\DbDependency',
+			'sql' => 'SELECT MAX(updated_at) FROM ' . Tags::tableName(),
+		]
+	])): ?>
+	<?= app\widgets\blog\TagsWidget::widget() ?>
+	<?php $this->endCache(); endif; ?>
+
 	<footer class="footer">
 		<ul class="soc">
 			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -56,8 +74,8 @@ function rusdate($param, $time=0) {
 			<li><a href="#"><i class="fa fa-instagram"></i></a></li>
 		</ul>
 		<p class="bottom-info">
-			<span>© websnack.ru</span>
-			<span>Garcy999@yandex.ru</span>
+			<span>© realmagic.ru</span>
+			<span>Example@mail.ru</span>
 		</p>
 	</footer>
 </section>

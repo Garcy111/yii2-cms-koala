@@ -8,6 +8,7 @@ use app\modules\admin\models\PostCategory;
 use app\modules\admin\models\PostSearch;
 use app\modules\admin\models\Tags;
 use app\modules\admin\models\TagPost;
+use app\components\SearchClass;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -92,6 +93,10 @@ class PostsController extends Controller
                 $desc = strip_tags($form['Post']['content']);
                 $form['Post']['description'] = $model->getShortText($desc, 400);
             }
+            $searchObj  = new SearchClass();
+            $index = ( $searchObj -> make_index($form['Post']['title']) );
+            $index = json_encode($index);
+            $form['Post']['title_index'] = $index;
         }
         if ($model->load($form)) {
             if ($model->save()) {
@@ -130,7 +135,12 @@ class PostsController extends Controller
                 $desc = strip_tags($form['Post']['content']);
                 $form['Post']['description'] = $model->getShortText($desc, 400);
             }
+             $searchObj  = new SearchClass();
+            $index = ( $searchObj -> make_index($form['Post']['title']) );
+            $index = json_encode($index);
+            $form['Post']['title_index'] = $index;
         }
+
         $model_category = new PostCategory();
         if ($model_category->load(Yii::$app->request->post())) {
             $model_category->save();

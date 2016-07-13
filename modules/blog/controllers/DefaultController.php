@@ -3,7 +3,6 @@
 namespace app\modules\blog\controllers;
 
 use app\modules\blog\models\Posts;
-use app\modules\blog\models\PostCategory;
 use app\modules\blog\models\Tags;
 use yii\web\Controller;
 use yii\data\Pagination;
@@ -13,7 +12,6 @@ use Yii;
 
 class DefaultController extends Controller
 {
-
     /**
      * @param null $ctg
      * @param null $tag
@@ -25,7 +23,7 @@ class DefaultController extends Controller
             $query = Posts::find()->where(['category_id' => $ctg]);
         } elseif(!empty($tag)){
             $tag = Tags::findOne(['name' => $tag]);
-            $query = $tag->getPosts();
+            $query = $tag->findPosts();
         } else $query = Posts::find();
 
         $countQuery = clone $query;
@@ -36,39 +34,36 @@ class DefaultController extends Controller
             'pageSizeParam' => false,
         ]);
 
-        $categories = PostCategory::find()->all();
         $posts = $query->offset($pages->offset)
-            ->orderBy('date DESC')
-            ->limit($pages->limit)
-            ->all();
+        ->orderBy('date DESC')
+        ->limit($pages->limit)
+        ->all();
 
-        $tags = Tags::find()->all();
         $popular = Posts::find()->orderBy('views DESC')->limit(3)->all();
         return $this->render('index', [
         		'posts' => $posts,
-        		'categories' => $categories,
-                'tags' => $tags,
                 'popular' => $popular,
                 'pages' => $pages,
         	]);
     }
+
     public function actionPost($link)
     {
         $model = new Posts();
         $post = $model::findOne(['link' => $link]);
+
         if (empty($post)) {
             throw new HttpException(404);
         }
-        $categories = PostCategory::find()->all();
-        $tags = Tags::find()->all();
+
         $post->views += 1;
         $post->save();
+
         $popular = Posts::find()->orderBy('views DESC')->limit(3)->all();
+
         return $this->render('post', [
                 'post' => $post,
-                'categories' => $categories,
                 'popular' => $popular,
-                'tags' => $tags,
             ]);
     }
 
@@ -90,5 +85,9 @@ class DefaultController extends Controller
         $like--;
         $post->likes = $like;
         $post->save(false);
+    }
+
+    public function actionError() {
+        return $this->render('notfoundpage');
     }
 }

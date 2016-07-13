@@ -48,7 +48,7 @@ $config = [
             'secret' => '6LdL_woTAAAAAC9dD9eFsQhnJIY9xpN8nVJKAyfK',
         ],
         'errorHandler' => [
-            'errorAction' => 'main/default/error',
+            'errorAction' => 'blog/default/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -88,7 +88,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '' => 'main/default/index',
+                '' => '/main/default/index',
                 // '<_a:error>' => 'main/default/<_a>',
                 'activation/<id>/<hash>' => 'user/default/activation',
                 'user' => 'user/default',
@@ -100,10 +100,11 @@ $config = [
                 'admin' => 'admin/default/index',
                 'admin/<_a:(login|logout|blog|settings)>' => 'admin/default/<_a>',
                 // module blog
-                'blog/category/<ctg>' => 'blog/default/index',
-                'blog/tag/<tag>' => 'blog/default/index',
-                'blog/page/<page>' => 'blog/default/index',
-                'blog/<link>' => 'blog/default/post',
+                'blog/category/<ctg>' => '/blog/default/index',
+                'blog/tag/<tag>' => '/blog/default/index',
+                'blog/page/<page>' => '/blog/default/index',
+                'blog/<link>' => '/blog/pages/index',
+                'blog/article/<link>' => '/blog/default/post',
                 // module shop
                 'shop' => 'shop/default/index',
                 'shop/<_a(cart)>' => 'shop/default/<_a>',
@@ -119,6 +120,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
     ];
+    $config['modules']['debug']['allowedIPs'] = ['127.0.0.1'];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [

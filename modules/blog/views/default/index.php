@@ -58,9 +58,5 @@ function rdate($param, $time=0) {
 ?>
 </section>
 <!-- End posts -->
-<?= $this->render('sidebar', [
-	'categories' => $categories,
-	'popular' => $popular,
-	'tags' => $tags,
-]) ?>
+<?= $this->render('sidebar', ['popular' => $popular]) ?>
 </div>

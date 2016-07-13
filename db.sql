@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 09 2016 г., 21:46
+-- Время создания: Июл 13 2016 г., 21:05
 -- Версия сервера: 5.7.12-0ubuntu1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -53,7 +53,8 @@ INSERT INTO `address` (`id`, `order_id`, `full_name`, `email`, `phone`, `index`,
 (10, 11830370, 'Никита Олегович', 'Garcy111@gmail.com', '89385032576', 45645, 'Краснодарский край, г. Ейск, ул. Шевченко д.65'),
 (11, 40336540, 'Вася', 'Garcy111@gmail.com', '89385032576', 354232, 'Краснодарский край, г. Ейск, ул. Шевченко д.71'),
 (13, 36411903, 'Вася', 'Garcy111@gmail.com', '89385032576', 354232, 'Краснодарский край, г. Ейск, ул. Шевченко д.71'),
-(14, 65458557, 'Rob', 'Hsa@cdsd.cd', '546456908', 124932, 'jklvjdfbvdfb');
+(14, 65458557, 'Rob', 'Hsa@cdsd.cd', '546456908', 124932, 'jklvjdfbvdfb'),
+(15, 87821039, 'Вася', 'Garcy111@gmail.com', '89385032576', 354232, 'Краснодарский край, г. Ейск, ул. Шевченко д.71');
 
 -- --------------------------------------------------------
 
@@ -105,14 +106,31 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `name`) VALUES
-(7, '8776585.jpg'),
-(8, '6239571.png'),
-(9, '45577211.jpg'),
-(10, '19810288.jpg'),
-(11, '52493097.jpg'),
-(12, '43155987.jpg'),
-(13, '2294069.jpg'),
-(14, '34200491.jpg');
+(16, '20419150.jpg'),
+(17, '30503210.jpg'),
+(18, '14127079.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `link` varchar(50) DEFAULT NULL,
+  `url` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `menu`
+--
+
+INSERT INTO `menu` (`id`, `name`, `link`, `url`) VALUES
+(1, 'Блог', '', '/'),
+(3, 'Контакты', 'contacts', ''),
+(4, 'Форум', '', 'https://yandex.ru');
 
 -- --------------------------------------------------------
 
@@ -152,6 +170,16 @@ CREATE TABLE `notification` (
   `date` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `notification`
+--
+
+INSERT INTO `notification` (`id`, `name`, `link`, `active`, `date`) VALUES
+(3, 'Новый пользователь: Soble', '/admin/users/view/?id=5', 0, '15/06/2016, 08:24'),
+(4, 'Новый пользователь: dsd', '/admin/users/view/?id=6', 0, '16/06/2016, 03:11'),
+(5, 'Новый пользователь: hjfdf', '/admin/users/view/?id=8', 0, '16/06/2016, 17:07'),
+(6, 'Новый заказ: 87821039', '/admin/orders/view/?id=5', 0, '16/06/2016, 06:51');
+
 -- --------------------------------------------------------
 
 --
@@ -181,6 +209,27 @@ INSERT INTO `orders` (`id`, `order_id`, `user_id`, `products`, `quantity`, `tota
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `pages`
+--
+
+CREATE TABLE `pages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `link` varchar(250) DEFAULT NULL,
+  `content` text,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `pages`
+--
+
+INSERT INTO `pages` (`id`, `name`, `link`, `content`, `updated_at`) VALUES
+(3, 'Контакты', 'contacts', '<p>Email: Garcy999@yandex.ru</p>', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `posts`
 --
 
@@ -206,9 +255,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `category_id`, `link`, `title`, `title_index`, `miniature`, `description`, `content`, `likes`, `comments`, `views`, `date`, `meta_desc`, `meta_keywords`) VALUES
-(1, 8, 'motel-bates.html', 'Тексты аутентичны', '{"range":1,"words":[{"source":"\\u0422\\u0415\\u041a\\u0421\\u0422\\u042b","count":1,"range":5,"weight":5,"basic":["\\u0422\\u0415\\u041a\\u0421\\u0422"]},{"source":"\\u0410\\u0423\\u0422\\u0415\\u041d\\u0422\\u0418\\u0427\\u041d\\u042b","count":1,"range":1,"weight":1,"basic":["\\u0410\\u0423\\u0422\\u0415\\u041d\\u0422\\u0418\\u0427\\u041d\\u042b\\u0419"]}]}', '/uploads/34200491.jpg', 'В пособии собрано около ста небольших по объему текстов с упраженениями. Тексты аутентичны, занимательны, просты и разнообразны в тематическом и жанровом отношении. К чтению можно приступать уже с первых дней изучения русского языка. Читатель найдет здесь сведения о культуре и традициях России, анекдоты, разнообразную полезную информацию.', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p><img style="float: left;" src="https://my-hit.org/storage/1210853_500x800x250.jpg" alt="" width="300" height="423" />Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!</p>', 33, 0, 47, 1463077181, '', ''),
-(5, NULL, 'religiya.html', 'Религия', '{"range":1,"words":[{"source":"CONSEQUATUR","count":1,"range":1,"weight":1,"basic":false},{"source":"IURE","count":1,"range":1,"weight":1,"basic":false}]}', '/uploads/19810288.jpg', 'Если в наше время кто-то еще проповедует рели&shy;гию, то вовсе не потому, что религиозные представления продолжают нас убеждать; нет, в основе всего скрывается желание утихомирить народ, простых людей. Спокойными людьми легче управлять, чем неспокойными и недовольными. Их и легче использовать или эксплуа&shy;тировать. Религия &mdash; это род опиума, который дают народу, чтобы убаюкать его ...', '<p>Если в наше время кто-то еще проповедует рели&shy;гию, то вовсе не потому, что религиозные представления продолжают нас убеждать; нет, в основе всего скрывается желание утихомирить народ, простых людей. Спокойными людьми легче управлять, чем неспокойными и недовольными. Их и легче использовать или эксплуа&shy;тировать. Религия &mdash; это род опиума, который дают народу, чтобы убаюкать его сладкими фантазиями, утешив таким образом насчет гнетущих его несправедливостей. Недаром всегда так быстро возни&shy;кает альянс двух важнейших политических сил, государства и церкви. Обе эти силы заинтересованы в сохранении иллюзии, будто добрый боженька если не на земле, то на небе вознаградит тех, кто не возмущался против несправедливостей, а спокойно и терпеливо вы&shy;полнял свой долг. Вот почему честная констатация того, что этот бог есть просто создание человеческой фантазии, считается худшим смертным грехом&raquo;.<br />- Поль Дирак</p>', 10, 0, 16, 1465496219, '', ''),
-(6, NULL, 'entry-two.html', 'Exercitationem inventore', '{"range":1,"words":[{"source":"EXERCITATIONEM","count":1,"range":1,"weight":1,"basic":false},{"source":"INVENTORE","count":1,"range":1,"weight":1,"basic":false}]}', '/uploads/52493097.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum', '<p class="post-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum</p>\r\n<p class="post-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum! Consequatur iure, nam quod sequi laboriosam, reiciendis eaque ullam consequuntur necessitatibus adipisci, quidem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem inventore reprehenderit ratione doloribus, id sunt eveniet voluptatum</p>', 8, 1, 7, 1463077194, '', '');
+(5, 12, 'religiya.html', 'Религия', '{"range":1,"words":[{"source":"CONSEQUATUR","count":1,"range":1,"weight":1,"basic":false},{"source":"IURE","count":1,"range":1,"weight":1,"basic":false}]}', '/uploads/20419150.jpg', 'Если в наше время кто-то еще проповедует рели&shy;гию, то вовсе не потому, что религиозные представления продолжают нас убеждать; нет, в основе всего скрывается желание утихомирить народ, простых людей. Спокойными людьми легче управлять, чем неспокойными и недовольными. Их и легче использовать или эксплуа&shy;тировать. Религия &mdash; это род опиума, который дают народу, чтобы убаюкать его ...', '<p>Если в наше время кто-то еще проповедует рели&shy;гию, то вовсе не потому, что религиозные представления продолжают нас убеждать; нет, в основе всего скрывается желание утихомирить народ, простых людей. Спокойными людьми легче управлять, чем неспокойными и недовольными. Их и легче использовать или эксплуа&shy;тировать. Религия &mdash; это род опиума, который дают народу, чтобы убаюкать его сладкими фантазиями, утешив таким образом насчет гнетущих его несправедливостей. Недаром всегда так быстро возни&shy;кает альянс двух важнейших политических сил, государства и церкви. Обе эти силы заинтересованы в сохранении иллюзии, будто добрый боженька если не на земле, то на небе вознаградит тех, кто не возмущался против несправедливостей, а спокойно и терпеливо вы&shy;полнял свой долг. Вот почему честная констатация того, что этот бог есть просто создание человеческой фантазии, считается худшим смертным грехом&raquo;.<br />- Поль Дирак</p>', 10, 0, 21, 1468052998, '', ''),
+(7, 16, 'page1.html', 'Заголовок', NULL, '/uploads/14127079.jpg', 'Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград? Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. ', '<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?</p>\r\n<blockquote>\r\n<p>Тут цитата</p>\r\n</blockquote>\r\n<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?&nbsp;Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?&nbsp;Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты.</p>\r\n<h1>Заголовок 1</h1>\r\n<h2>Заголовок 2</h2>\r\n<h3>Заголовок 3</h3>\r\n<p>Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?</p>\r\n<p>Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?</p>\r\n<h2 style="text-align: center;">Заголовок по центру</h2>\r\n<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?</p>\r\n<ol>\r\n<li>один</li>\r\n<li>два</li>\r\n<li>три</li>\r\n</ol>\r\n<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут хрыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?</p>\r\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/uploads/30503210.jpg" alt="" width="670" height="538" /></p>\r\n<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Силуэт диких заглавных первую предупреждал дал, подзаголовок составитель речью. Эта журчит буквенных не всемогущая даже сих послушавшись города выйти буквоград?</p>\r\n<p>а это ссылка на&nbsp;<a href="https://yandex.ru">яндекс</a></p>', 1, 0, 90, 1468073966, '', '');
 
 -- --------------------------------------------------------
 
@@ -218,18 +266,19 @@ INSERT INTO `posts` (`id`, `category_id`, `link`, `title`, `title_index`, `minia
 
 CREATE TABLE `post_category` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `post_category`
 --
 
-INSERT INTO `post_category` (`id`, `name`) VALUES
-(1, 'Технологии'),
-(3, 'Искусство'),
-(8, 'Интернет'),
-(11, 'Веб-программирование');
+INSERT INTO `post_category` (`id`, `name`, `updated_at`) VALUES
+(1, 'Технологии', NULL),
+(3, 'Искусство', NULL),
+(12, 'Цитаты', NULL),
+(16, 'Магия', NULL);
 
 -- --------------------------------------------------------
 
@@ -286,16 +335,18 @@ INSERT INTO `product_category` (`id`, `name`, `parent_id`) VALUES
 
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) DEFAULT NULL
+  `name` varchar(30) DEFAULT NULL,
+  `updated_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tags`
 --
 
-INSERT INTO `tags` (`id`, `name`) VALUES
-(1, 'PHP'),
-(2, 'JavaScript');
+INSERT INTO `tags` (`id`, `name`, `updated_at`) VALUES
+(3, 'Религия', 0),
+(4, 'Web', 1467475350),
+(5, 'Yii', 1467475832);
 
 -- --------------------------------------------------------
 
@@ -313,10 +364,7 @@ CREATE TABLE `tag_post` (
 --
 
 INSERT INTO `tag_post` (`post_id`, `tag_id`) VALUES
-(1, 1),
-(5, 1),
-(1, 2),
-(6, 2);
+(5, 3);
 
 -- --------------------------------------------------------
 
@@ -400,6 +448,12 @@ ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `migration`
 --
 ALTER TABLE `migration`
@@ -415,6 +469,12 @@ ALTER TABLE `notification`
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `pages`
+--
+ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -479,7 +539,7 @@ ALTER TABLE `value`
 -- AUTO_INCREMENT для таблицы `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `attribute`
 --
@@ -494,27 +554,37 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT для таблицы `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT для таблицы `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT для таблицы `post_category`
 --
 ALTER TABLE `post_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
@@ -529,12 +599,12 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT для таблицы `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

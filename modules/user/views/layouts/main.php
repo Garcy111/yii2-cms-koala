@@ -19,7 +19,7 @@ YiiAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <div class="container">
-    <?= app\components\ModalWidget::widget() ?>
+    <?= app\widgets\admin\ModalWidget::widget() ?>
     
     <?= $content ?>
 </div>

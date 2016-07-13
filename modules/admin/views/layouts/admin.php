@@ -30,7 +30,7 @@ $this->registerJsFile('/modules/admin/adminpanel.js');
 <?php $this->beginBody() ?>
 <div class="container">
     <div class="hero">
-    <?= app\components\ModalWidget::widget() ?>
+    <?= app\widgets\admin\ModalWidget::widget() ?>
     <div class="layout-panel"></div>
     <div class="panel">
         <div class="logo">

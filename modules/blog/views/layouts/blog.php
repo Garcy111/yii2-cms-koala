@@ -6,13 +6,15 @@
 use yii\helpers\Html;
 use yii\web\YiiAsset;
 app\assets\FontawesomeAsset::register($this);
+YiiAsset::register($this);
 $this->registerCssFile('/styles/fonts.css');
 $this->registerCssFile('/modules/blog/main.css', ['depends' => 'app\assets\BulmaAsset']);
 $this->registerCssFile('/modules/blog/like.css');
-$this->registerJsFile('/modules/blog/toProgress.min.js', ['depends' => 'yii\web\YiiAsset', 'position' => \yii\web\View::POS_HEAD]);
-$this->registerJsFile('/modules/blog/main.js');
 $this->registerJsFile('/modules/blog/mo.min.js');
 $this->registerJsFile('/modules/blog/like.js');
+$this->registerJsFile('/modules/blog/raphael.js');
+$this->registerJsFile('/modules/blog/paths.js');
+$this->registerJsFile('/modules/blog/main.js');
 
 // YiiAsset::register($this);
 ?>
@@ -28,18 +30,17 @@ $this->registerJsFile('/modules/blog/like.js');
 </head>
 <body>
 <?php $this->beginBody() ?>
-    <?= app\components\ModalWidget::widget() ?>
-    <div id="top-progress-bar"></div>
-    <div class="hero is-fullheight hero-preload"></div>
+   <?= app\widgets\admin\ModalWidget::widget() ?>
     <header class="header">
 		<div class="column is-7-desktop is-8-tablet is-10-mobile">
 	<nav>
-		<a href="/" class=""><div class="logo"></div></a>
+		<a href="/" class=""><div class="logo" id="logo"></div></a>
 		<ul class="menu is-hidden-mobile">
-			<li><a class="menu-tab-click" href="/">Блог</a></li>
-			<li><a class="menu-tab" href="#">Пенька</a></li>
-			<li><a class="menu-tab" href="#">Крот</a></li>
-			<li><a class="menu-tab" href="#">Бутерброд</a></li>
+			<!-- <li><a class="menu-tab-click" href="/">Блог</a></li>
+			<li><a class="menu-tab" href="#">Форум</a></li>
+			<li><a class="menu-tab" href="#">О нас</a></li>
+			<li><a class="menu-tab" href="#">Контакты</a></li> -->
+			<?= $this->render('../default/menu') ?>
 		</ul>
 	</nav>
 	</div>
@@ -59,7 +60,7 @@ $this->registerJsFile('/modules/blog/like.js');
 					<?= Html::a('<div class="logout"><i class="fa fa-sign-out"></i></div>', ['/user/default/logout']) ?>
 				<?php endif ?>
 			</div>
-			<div class="search-box is-hidden-touch">
+			<div class="search-box">
 			<?= Html::beginForm(['/blog/search/index'], 'GET') ?>
 				<p class="control has-addons">
 					<input class="search-input" name="query" type="text" placeholder="Поиск">
@@ -72,14 +73,11 @@ $this->registerJsFile('/modules/blog/like.js');
 		</div>
 	</header>
     <?= $content ?>
-    <script src="/modules/blog/preloader.js"></script>
     <div class="modal">
 	<div class="modal-background"></div>
 	<div class="modal-content">
 	<ul class="list-mobile-menu">
-		<li><a href="#">Блог</a></li>
-		<li><a href="#">Уроки</a></li>
-		<li><a href="#">Контакты</a></li>
+		<?= $this->render('../default/menu') ?>
 	</ul>
 	</div>
 	<button class="modal-close"></button>

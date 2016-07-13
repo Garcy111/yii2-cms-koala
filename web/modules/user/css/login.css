@@ -1,5 +1,5 @@
 body {
-	background: #ECEEF1;
+	background: #005671;
 }
 
 .wrapper-form {
@@ -7,9 +7,9 @@ body {
 	height: 100%;
 	padding: 10px 50px;
 	margin: 30px auto;
-	border-radius: 6px;
+	border-radius: 2px;
 	background: #F9F9F9;
-	box-shadow: 1px 8px 10px #CFD5E1, -5px -1px 10px #CFD5E1;
+	box-shadow: 1px 8px 10px #00465B, -5px -1px 10px #00465B;
 }
 
 .wrapper-form h1 {
@@ -25,7 +25,7 @@ body {
 	height: 38px;
 	padding: 0 10px;
 	outline: none;
-	border-radius: 5px;
+	border-radius: 2px;
 	margin: 8px auto;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -68,23 +68,23 @@ body {
 	cursor: pointer;
 	outline: none;
 	border: none;
-	border-bottom: 4px solid #7492C9;
-	border-radius: 6px;
+	border-bottom: 4px solid #8072AF;
+	border-radius: 2px;
 	color: #F3F3F3;
 	font: 12pt 'RobotoRegular';
-	background: #84A2D9;
+	background: #9281C6;
 	transition: background .3s;
 }
 
 .btn-send:hover {
-	background: #7897D0;
-	border-bottom: 4px solid #6F8CC2;
+	background: #8072AF;
+	border-bottom: 4px solid #72669D;
 }
 
 .btn-send:active {
 	padding-top: 3px;
-	background: #6F8CC2;
-	border-bottom: 4px solid #6F8CC2;
+	background: #72669D;
+	border-bottom: 4px solid #72669D;
 }
 
 .g-recaptcha {

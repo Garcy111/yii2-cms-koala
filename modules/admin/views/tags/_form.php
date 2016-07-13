@@ -16,6 +16,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= $form->field($model, 'updated_at')->hiddenInput(['value' => time()])->label(false) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -45,6 +45,11 @@ class PostCategorySearch extends PostCategory
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => 'SORT_DESC',
+                ],
+            ],
             'pagination' => [
             'pageSize' => 5,
     ],

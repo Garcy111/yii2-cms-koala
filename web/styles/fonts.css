@@ -39,52 +39,9 @@
 	font-weight: normal;
 }
 
-/*@font-face {
-	font-family: "Raleway-Regular";
-	src: url("../fonts/Raleway/Raleway-Regular.ttf") format("truetype");
+@font-face {
+	font-family: "Forum";
+	src: url("../fonts/Forum.ttf") format("truetype");
 	font-style: normal;
 	font-weight: normal;
 }
-
-@font-face {
-	font-family: "Raleway-Light";
-	src: url("../fonts/Raleway/Raleway-Light.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: "Raleway-Medium";
-	src: url("../fonts/Raleway/Raleway-Medium.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: "Raleway-Bold";
-	src: url("../fonts/Raleway/Raleway-Bold.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-}
-
-
-@font-face {
-	font-family: "ProximaNova-Reg";
-	src: url("../fonts/ProximaNova/ProximaNova-Reg.otf");
-	font-style: normal;
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: "ProximaNova-Light";
-	src: url("../fonts/ProximaNova/ProximaNova-Light.otf");
-	font-style: normal;
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: "ProximaNova-Bold";
-	src: url("../fonts/ProximaNova/ProximaNova-Bold.otf");
-	font-style: normal;
-	font-weight: normal;
-}*/

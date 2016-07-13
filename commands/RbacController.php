@@ -30,6 +30,11 @@ class RbacController extends Controller
         $auth->addChild($admin, $user);
     }
 
+     public function actionGarcy()
+     {
+        echo "Hello Garcy!\n\r";
+     }
+
     public function actionTest()
     {
         $auth = Yii::$app->getAuthManager();

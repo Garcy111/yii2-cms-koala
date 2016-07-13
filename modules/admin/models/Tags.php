@@ -28,7 +28,8 @@ class Tags extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'string', 'max' => 30]
+            [['name'], 'string', 'max' => 30],
+            ['updated_at', 'safe'],
         ];
     }
 
